@@ -423,7 +423,13 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scripts/GhostAsyk.cs"
 "Assets/Scripts/MovementHandler.cs"
+"Assets/Scripts/Projection.cs"
+"Assets/Tarodev Trajectory Line/_Scripts/Ball.cs"
+"Assets/Tarodev Trajectory Line/_Scripts/Breakable.cs"
+"Assets/Tarodev Trajectory Line/_Scripts/Cannon.cs"
+"Assets/Tarodev Trajectory Line/_Scripts/Rotator.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

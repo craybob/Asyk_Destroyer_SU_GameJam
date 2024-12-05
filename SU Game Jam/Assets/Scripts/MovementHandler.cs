@@ -8,7 +8,8 @@ public enum ThrowStateModes: byte
     verticalDirMode = 0, 
     horizontalDirMode = 1,
     farDirMode = 2,
-    throwMode = 3
+    throwMode = 3,
+    idleMode = 4
 }
 public class MovementHandler : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class MovementHandler : MonoBehaviour
     public float forcePush;
 
     private Rigidbody body;
+
+    [SerializeField] private Projection _projection;
+    [SerializeField] private GhostAsyk _ghostAsyk;
+    private bool isGhost = false;
+
     private void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -38,14 +44,27 @@ public class MovementHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         ThrowDirection = GetDirection();
+        if (throwState != ThrowStateModes.idleMode) {
+            
+            _projection.SimulateTrajectory(_ghostAsyk, transform.position, ThrowDirection * forcePush);
+        }
 
         if (throwState == ThrowStateModes.throwMode)
         {
             body.AddForce(ThrowDirection * forcePush, ForceMode.Impulse);
             ChangeThrowMode();
         }
+    }
+
+    public void Init(Vector3 dir, bool ghost)
+    {
+        if (ghost && throwState != ThrowStateModes.idleMode)
+            return;
+
+        isGhost = ghost;
+        body.AddForce(dir, ForceMode.Impulse);
+        ChangeThrowMode();
     }
 
     private Vector3 GetDirection()
@@ -101,7 +120,13 @@ public class MovementHandler : MonoBehaviour
     {
         if ((byte)throwState > 3)
         {
-            throwState = 0;
+            Invoke("Reload", 2f);
+            
         }
+    }
+
+    private void Reload()
+    {
+        throwState = 0;
     }
 }
